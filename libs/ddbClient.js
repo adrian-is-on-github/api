@@ -6,18 +6,23 @@
 
 //AWS REF https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/example_dynamodb_PutItem_section.html
 
-'use strict';
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { v4 as uuidv4, __esModule } from 'uuid';
-
-const newAccount = {
-  id: uuidv4(),
-  name: `Account Name`
-  };
-
-const putNewAccount = () => {
-  DynamoDB(putItem(newAccount))
-};
+export const REGION = "eu-west-1"
+export const ddbClient = new DynamoDBClient({ region: REGION })
 
 
-module.exports = { putNewAccount }
+
+// Rubbish Below
+// import { v4 as uuidv4, __esModule } from 'uuid';
+
+// const newAccount = {
+//   id: uuidv4(),
+//   name: `Account Name`
+//   };
+
+// const putNewAccount = () => {
+//   DynamoDBClient(putItem(newAccount))
+// };
+
+
+// module.exports = { putNewAccount }

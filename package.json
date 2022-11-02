@@ -4,10 +4,10 @@
   "description": "Serverless CRUD service exposing a REST HTTP interface",
   "author": "",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.200.0",
     "@aws-sdk/lib-dynamodb": "^3.200.0",
-    "n": "^9.0.0",
     "node": "^16.x",
     "uuid": "^9.0.0"
   }

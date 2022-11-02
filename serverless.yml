@@ -1,12 +1,12 @@
 service: serverless-http-api-dynamodb
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs16.x
   lambdaHashingVersion: '20201221'
   environment:
-    DYNAMODB_TABLE: ${self:service}-${sls:stage}
+    DYNAMODB_TABLE: account-${sls:stage}
   httpApi:
     cors: true
   iam:
@@ -24,36 +24,36 @@ provider:
 
 functions:
   create:
-    handler: create.create
+    handler: putNewAccount.putNewAccount
     events:
       - httpApi:
           path: /
           method: post
 
-  get:
-    handler: get.get
-    events:
-      - httpApi:
-          path: /{id}
-          method: get
+  # get:
+  #   handler: get.get
+  #   events:
+  #     - httpApi:
+  #         path: /{id}
+  #         method: get
 
-  update:
-    handler: update.update
-    events:
-      - httpApi:
-          path: /{id}
-          method: put
+  # update:
+  #   handler: update.update
+  #   events:
+  #     - httpApi:
+  #         path: /{id}
+  #         method: put
 
-  delete:
-    handler: delete.delete
-    events:
-      - httpApi:
-          path: /{id}
-          method: delete
+  # delete:
+  #   handler: delete.delete
+  #   events:
+  #     - httpApi:
+  #         path: /{id}
+  #         method: delete
 
 resources:
   Resources:
-    TodosDynamoDbTable:
+    MeterReadDBTable:
       Type: 'AWS::DynamoDB::Table'
       DeletionPolicy: Retain
       Properties:
@@ -61,9 +61,15 @@ resources:
           -
             AttributeName: id
             AttributeType: S
+          -
+            AttributeName: name
+            AttributeType: S
         KeySchema:
           -
             AttributeName: id
             KeyType: HASH
+          -
+            AttributeName: name
+            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
