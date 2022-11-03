@@ -39,7 +39,6 @@ export const params = {
   Item: {
     primaryKey: "id", // For example, 'Season': 2
     sortKey: "name", // For example,  'Episode': 2 (only required if table has sort key)
-    NEW_ATTRIBUTE_1: "NEW_ATTRIBUTE_1_VALUE", //For example 'Title': 'The Beginning'
   },
 };
 

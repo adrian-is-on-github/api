@@ -13,7 +13,8 @@ const newAccount = {
   };
 
 const putNewAccount = () => {
-  DynamoDB(putItem(newAccount))
+  putItem(newAccount)
 };
+console.log(putNewAccount) ///
 
 export { putNewAccount };
